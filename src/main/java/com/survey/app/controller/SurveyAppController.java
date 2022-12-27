@@ -24,6 +24,7 @@ public class SurveyAppController {
 	 @RequestMapping(value = "/hello")
 	 public String viewHelloPage() {
 		 
+		 
 		 return "hello";
 	 }
 
