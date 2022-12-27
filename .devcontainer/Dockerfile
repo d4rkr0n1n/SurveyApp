@@ -1,4 +1,4 @@
-FROM maven:3.8.3-openjdk-17
+FROM docker.io/d4rkr0n1n/surveyapp
 
 WORKDIR /SurveyApp
 COPY . .
