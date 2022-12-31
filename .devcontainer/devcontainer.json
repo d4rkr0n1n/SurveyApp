@@ -24,6 +24,7 @@
 		"pivotal.vscode-spring-boot",
 		"vscjava.vscode-spring-boot-dashboard",
 		"GabrielBB.vscode-lombok",
+		"ms-vscode-remote.remote-containers",
 		"redhat.vscode-xml"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
