@@ -1,7 +1,5 @@
 package com.survey.app.dto;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
