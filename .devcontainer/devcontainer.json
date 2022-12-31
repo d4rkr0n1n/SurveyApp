@@ -23,7 +23,8 @@
 		"shengchen.vscode-checkstyle",
 		"pivotal.vscode-spring-boot",
 		"vscjava.vscode-spring-boot-dashboard",
-		"GabrielBB.vscode-lombok"
+		"GabrielBB.vscode-lombok",
+		"redhat.vscode-xml"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [

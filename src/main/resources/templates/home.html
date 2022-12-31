@@ -1,54 +1,86 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-	<title>Bootstrap Example</title>
+	<title>Survey App</title>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="p-0 m-0 border-0 bd-example" style="background-color: #2b2a33;">
+<body style="background-color: #2b2a33;">
 
 	<!-- Example Code -->
+	<header>
+		<nav class="navbar bg-body-tertiary">
+			<div class="container-fluid justify-content-center">
+				<a class="navbar-brand" th:href="@{/}">SurveyApp</a>
+			</div>
+		</nav>
+	</header>
 
-	<nav class="navbar bg-body-tertiary">
-		<div class="container-fluid">
-			<a class="navbar-brand">SurveyApp</a>
-			<form class="d-flex" role="search">
-
-				<button class="btn btn-outline-secondary" type="submit">Log In</button>
-			</form>
-		</div>
-	</nav>
-	<div class="container text-center">
-		<div class="row justify-content-md-center">
-			<div class="card" style="width: 25em; margin: auto; margin-top: 10%;">
-				<div class="card-header">
-					First Time. Sign Up in a single click...
+	<section>
+		<div class="container text-center justify-content-center">
+			<div class="row justify-content-center">
+				<div class="card" style="width: 25em; margin: auto; margin-top: 13%; margin-bottom: 15%;">
+					<div class="card-header"
+						th:if="${session.user.username == null and session.loginChange == 'true' or session.signupChange != 'true'}">
+						First Time ? Sign Up in a single click...
+					</div>
+					<div class="card-header" th:if="${session.user.username != null and session.signupChange == 'true'}"
+						th:utext="'User Id: &lt;strong&gt;' + ${session.user.username} + '&lt;/strong&gt; already exists !!'" />
+					<div class="card-body">
+						<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+							<div class="row">
+								<input type="text" class="form-control" placeholder="Username" style="margin: auto;"
+									name="username" th:field="*{username}">
+							</div>
+							<div class="row">
+								<input type="password" class="form-control" placeholder="Password"
+									style=" margin: auto; margin-top: 5%;margin-bottom: 5%;" name="password"
+									th:field="*{password}">
+							</div>
+							<button type="submit" class="btn btn-outline-secondary">Sign Up</button>
+						</form>
+					</div>
 				</div>
-				<div class="card-body">
-					<form>
-						<div class="row">
-							<input type="email" class="form-control" placeholder="Email" style="margin: auto;" th:field="*{username	}">
-						</div>
-						<div class="row">
-							<input type="password" class="form-control" placeholder="Password"
-								style=" margin: auto; margin-top: 5%;margin-bottom: 5%;" th:field="*{password}">
-						</div>
-						<button type="submit" class="btn btn-outline-secondary" th:href="@{/login}">Sign Up</button>
-					</form>
+				<div class="card" style="width: 25em; margin: auto; margin-top: 13%; margin-bottom: 15%;">
+					<div class="card-header"
+						th:if="${session.user.username == null and session.signupChange == 'true' or session.loginChange != 'true'}">
+						Registered User ? Log in a single click...
+					</div>
+					<div class="card-header" th:if="${session.user.username != null and session.loginChange == 'true'}"
+						th:text="'Invalid Credentials !!'" />
+					<div class="card-body">
+						<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+							<div class="row">
+								<input type="text" class="form-control" placeholder="Username" style="margin: auto;"
+									name="username" th:field="*{username}">
+							</div>
+							<div class="row">
+								<input type="password" class="form-control" placeholder="Password"
+									style=" margin: auto; margin-top: 5%;margin-bottom: 5%;" name="password"
+									th:field="*{password}">
+							</div>
+							<button type="submit" class="btn btn-outline-secondary">Log In</button>
+						</form>
+					</div>
 				</div>
 			</div>
+
 		</div>
+	</section>
 
-	</div>
 
 
+	<footer>
+		<nav class="navbar sticky-bottom justify-content-center bg-body-tertiary"
+			style="position: fixed;left: 0;bottom: 0;width: 100%;text-align: center;">
+			<p class="text-center text-muted" style="margin-top: 1%;">© 2017 The Clover Clan, Inc</p>
+		</nav>
+	</footer>
 </body>
 
 </html>
